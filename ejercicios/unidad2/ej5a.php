@@ -33,7 +33,7 @@
         print_r($modulosMerge); 
         echo "</pre>";
 
-        $modulosPush = $modulo1; // empezamos con el primer array
+        $modulosPush = $modulo1; 
         array_push($modulosPush, ...$modulo2, ...$modulo3);
         echo "Unidos con funcion push<pre>";
         print_r($modulosPush);
@@ -42,3 +42,4 @@
         ?>
     </body>
 </html>
+
