@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <title>formulario similar al de la imagen. El programa php 
+deberá devolver el resultado de la operación seleccionada. El programa calculadora.php se estructurará 
+en base a funciones para cada una de las operaciones. </title>
+    </head>
+    <body>
+        <h2>Calculadora</h2>
+        <form action="calculadora.php" method="post">
+            <label>Numero 1 : </label>
+            <input type="number" name="num1" required><br><br>
+
+            <label>Numero 2 : </label>
+            <input type="number" name="num2" required><br><br>
+
+            <p>Selecciona operacion:</p>
+            <input type="radio" name="operacion" value="suma" checked> Suma<br>
+            <input type="radio" name="operacion" value="resta"> Resta<br>
+            <input type="radio" name="operacion" value="multiplicacion"> Multiplicacion<br>
+            <input type="radio" name="operacion" value="division"> Division<br><br>
+
+            <input type="submit" value="calculadora">
+            <input type="reset" value="borrar">
+        </form>
+    </body>
+</html>
