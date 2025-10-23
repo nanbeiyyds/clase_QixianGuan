@@ -1,0 +1,23 @@
+box 
+{ 
+    width: 140px; 
+    height: 60px; 
+    display:grid; 
+    place-items:center; 
+    margin:10px 0;
+}
+
+/* Caja 1: borde sólido, fino, azul */
+.one {
+  border: 2px solid blue;
+}
+
+/* Caja 2: borde punteado, medio, verde */
+.two {
+  border: 4px dotted green;
+}
+
+/* Caja 3: borde discontinuo, grueso, rojo */
+.three {
+  border: 6px dashed red;
+}
