@@ -1,0 +1,6 @@
+.note 
+{
+  padding: 12px;
+  background: #fef3c7;
+  border-inline-start: 6px solid #f59e0b; /* borde lógico al inicio de la línea */
+}
