@@ -1,0 +1,17 @@
+.striped, .callout 
+{ 
+    padding:16px; 
+    margin:12px 0; 
+    background:#fff; 
+}
+/* Caja con solo borde inferior */
+.striped 
+{
+  border-bottom: 4px solid #007bff; /* azul */
+}
+
+/* Caja con borde izquierdo destacado */
+.callout 
+{
+  border-left: 6px solid #28a745; /* verde */
+}
