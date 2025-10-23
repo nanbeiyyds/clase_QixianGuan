@@ -1,0 +1,31 @@
+.card
+{
+    width: 140px; 
+    height: 70px; 
+    display:grid; 
+    place-items:center; 
+    margin:12px 0; 
+    background:#f9fafb; 
+}
+
+/*Caja A: border sólido,fino y azul*/
+.a
+{
+    border-style: solid;
+    border-width: 2px;
+    border-color: blue;
+}
+
+/*Caja b: border punteado,medio y verde*/
+.b 
+{
+    border-style: dotted;
+    border-width: 4px;
+    border-color: green;
+}
+/* Caja C: borde discontinuo, grueso y rojo */
+.c {
+    border-style: dashed;
+    border-width: 6px;
+    border-color: red;
+}
