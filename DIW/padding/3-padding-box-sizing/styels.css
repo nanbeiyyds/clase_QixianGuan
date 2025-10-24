@@ -1,0 +1,23 @@
+body 
+{ 
+    display:flex; 
+    gap:24px; 
+    flex-wrap:wrap; 
+}
+.demo 
+{ 
+    width:200px; 
+    background:#ecfeff; 
+    border:2px solid #06b6d4;  
+    padding: 20px;
+}
+/*sin box-sizing (valor por defecto)*/
+.no-bs 
+{
+    box-sizing: content-box;/*valor por defecto*/
+}
+/*con box-sizing:border-box*/
+.bs 
+{
+    box-sizing: border-box;
+}
