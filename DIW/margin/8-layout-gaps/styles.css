@@ -1,0 +1,17 @@
+.grid 
+{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background: #f9f9f9;
+  padding: 10px; /* evita el colapso de márgenes con las tarjetas */
+}
+.card 
+{ 
+    background:#fff; 
+    border:1px solid #ddd; 
+    height:80px; 
+    display:grid;
+    place-items:center; 
+    margin: 10px;
+}
