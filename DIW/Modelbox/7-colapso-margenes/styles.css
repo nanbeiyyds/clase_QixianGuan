@@ -1,0 +1,13 @@
+.p1 
+{ 
+   margin-bottom:30px; 
+   background:#eef; 
+}
+.p2 
+{ 
+   margin-top:40px; 
+   background:#efe; 
+   overflow: auto;
+}
+
+   /*Sugerencia: crea un nuevo contexto de formato en .p2 (p.ej. display: flow-root) o evita colapso con overflow:auto en un contenedor. */
