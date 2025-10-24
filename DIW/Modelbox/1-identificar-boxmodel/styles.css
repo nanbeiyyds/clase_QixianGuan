@@ -1,0 +1,15 @@
+.box 
+{
+  background:#e0f2fe; 
+  padding: 20px;
+  border: 4px solid #0284c7;
+  margin: 16px;
+}
+.content 
+{
+  background:#fff; /* representa el área de contenido */
+}
+.nota 
+{ 
+  font-family: system-ui, sans-serif; 
+}
