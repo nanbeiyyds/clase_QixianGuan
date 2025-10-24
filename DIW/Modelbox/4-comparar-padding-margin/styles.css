@@ -1,0 +1,22 @@
+.caja 
+{ 
+    width:200px; 
+    background:#e2e8f0; 
+    border:1px solid #94a3b8; 
+    display:inline-block; 
+    margin:8px; 
+    text-align: center;
+}
+.a 
+{
+    padding: 20px;
+}
+.b
+{
+    margin: 30px;
+}
+.c 
+{
+    padding: 20px;
+    margin: 30px;
+}
