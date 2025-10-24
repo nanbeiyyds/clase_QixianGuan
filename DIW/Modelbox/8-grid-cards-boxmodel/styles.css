@@ -1,0 +1,32 @@
+.grid 
+{
+  display:flex;
+  flex-wrap:wrap;
+  margin: -8x;
+ 
+}
+.card 
+{
+  border-radius: 8px;
+  width: calc(33.333% - 16px); /* calcula pensando en márgenes laterales de 8px */
+  min-height: 100px;
+  background:#fff;
+  margin: 8px;
+  border: 2px solid #ddd;
+  padding: 16px;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  box-shadow: 0 2px 4px rgba(0,0,0,0,1);
+}
+* 
+{
+  box-sizing: border-box;
+}
+body
+{
+  background: #f3f4f6;
+  font-family: sans-serif;
+  padding: 20px;
+}
