@@ -1,0 +1,25 @@
+.btn 
+{ 
+    background:#1f2937; 
+    color:#fff; 
+    border:0; 
+    border-radius:8px;
+    font-family: system-ui,sans-serif;  
+    cursor: pointer;
+}
+/*tamaños con padding*/
+.sm
+{
+    padding: 6px 15px; /*paqueño*/
+    font-size: 0.8rem;
+}
+.md
+{
+    padding: 10px 20px;/*mediano*/
+    font-size: 1rem;
+}
+.lg
+{
+    padding: 15px 25px;/*grande*/
+    font-size: 1.2rem;
+}
