@@ -1,0 +1,8 @@
+.note 
+{ 
+    background:#fffbeb; 
+    border:1px solid #fde68a;  
+    writing-mode: horizontal-tb; 
+    padding-block: 16px;
+    padding-inline: 32px;
+}
