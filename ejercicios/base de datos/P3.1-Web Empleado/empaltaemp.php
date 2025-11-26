@@ -8,60 +8,81 @@
         $servername = "localhost";
         $username   = "root";
         $password   = "rootroot";
-        $dbname     = "empleados1n";
+        $dbname     = "empleados";
         $conn = null;
+        $dptos = [];
 
-        try {
+        function limpiarCampo($data)
+        {
+            $data = trim($data);
+            $data = stripslashes($data);
+            $data = htmlspecialchars($data);
+            return $data;
+        }
+
+        function datos()
+        {
+            return [
+            'dni' => strtoupper(limpiarCampo($_POST["dni"])),
+            'nombre'=> limpiarCampo($_POST["nombre"]),
+            'apellidos' => limpiarCampo($_POST["apellidos"]),
+            'fecha_nac' => limpiarCampo($_POST["fecha_nac"]),
+            'salario' => limpiarCampo($_POST["salario"]),
+            'cod_dpto' => limpiarCampo($_POST["cod_dpto"])
+            ];
+        }
+
+        function insertar($conn,$datos)
+        {
+            $sql1 = "INSERT INTO empleado(dni,nombre,apellidos,fecha_nac,salario)
+                    VALUES (:dni,:nombre,:apellidos,:fecha_nac,:salario)";
+            $stmt1 = $conn->prepare($sql1);
+            $stmt1->bindParam(':dni',$datos['dni']);
+            $stmt1->bindParam(':nombre',$datos['nombre']);
+            $stmt1->bindParam(':apellidos',$datos['apellidos']);
+            $stmt1->bindParam(':fecha_nac',$datos['fecha_nac']);
+            $stmt1->bindParam(':salario',$datos['salario']);
+            $stmt1->execute();
+        }
+
+        function departamentoInicial($conn,$dni,$cod_dpto)
+        {
+            $sql2 = "INSERT INTO emple_depart(dni,cod_dpto,fecha_ini,fecha_fin)
+                    VALUES(:dni, :cod_dpto, CURDATE(), NULL)";
+            $stmt2 = $conn->prepare($sql2);
+            $stmt2->bindParam(':dni', $dni);
+            $stmt2->bindParam(':cod_dpto', $cod_dpto);
+            $stmt2->execute();
+        }
+
+        function obtenerDepartamento($conn)
+        {
+            $stmt_dptos = $conn->query("SELECT cod_dpto,nombre_dpto FROM departamento");
+            return $stmt_dptos->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        try 
+        {
             $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+            $dptos = obtenerDepartamento($conn);
             if($_SERVER["REQUEST_METHOD"] == "POST") 
             {
-                $dni = strtoupper($_POST["dni"]);
-                $nombre = $_POST["nombre"];
-                $apellidos = $_POST["apellidos"];
-                $fecha_nac = $_POST["fecha_nac"];
-                $salario = $_POST["salario"];
-                $cod_dpto = $_POST["cod_dpto"];
+                $datos = datos();
 
-                if(!preg_match("/^[0-9]{8}[A-Za-z]$/", $dni)) 
-                {
-                    echo "DNI no válido<br><br>";
-                } 
-                else 
-                {
-                    $conn->beginTransaction();
+                $conn -> beginTransaction();
+                insertar($conn,$datos);
 
-                    $sql1 = "INSERT INTO empleado(dni,nombre,apellidos,fecha_nac,salario,cod_dpto)
-                             VALUES (:dni,:nombre,:apellidos,:fecha_nac,:salario,:cod_dpto)";
-                    $stmt1 = $conn->prepare($sql1);
-                    $stmt1->bindParam(':dni', $dni);
-                    $stmt1->bindParam(':nombre', $nombre);
-                    $stmt1->bindParam(':apellidos', $apellidos);
-                    $stmt1->bindParam(':fecha_nac', $fecha_nac);
-                    $stmt1->bindParam(':salario', $salario);
-                    $stmt1->bindParam(':cod_dpto', $cod_dpto);
-                    $stmt1->execute();
-
-                    $sql2 = "INSERT INTO trabaja(dni,cod_dpto,fecha_ini,fecha_fin)
-                             VALUES(:dni, :cod_dpto, CURDATE(), NULL)";
-                    $stmt2 = $conn->prepare($sql2);
-                    $stmt2->bindParam(':dni', $dni);
-                    $stmt2->bindParam(':cod_dpto', $cod_dpto);
-                    $stmt2->execute();
-                    
-                    // --- COMMIT ---
-                    $conn->commit();
-                    echo "<p>Empleado creado correctamente</p><br>";
-                }
+                departamentoInicial($conn,$datos['dni'],$datos['cod_dpto']);
+                $conn -> commit();
+                echo "Empleado creado correctamente";
+                
             }
-            $stmt_dptos = $conn->query("SELECT cod_dpto,nombre_dpto FROM departamento");
-            $dptos = $stmt_dptos->fetchAll(PDO::FETCH_ASSOC);
         }
         catch (PDOException $e) 
         {
-            // --- ROLLBACK ---
-            if ($conn) 
+            if ($conn && $conn -> inTransaction()) 
             {
                 $conn->rollBack();
             }
